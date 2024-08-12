@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +20,12 @@ namespace OAI
         {
             InitializeComponent();
             string pickedFilePath = null;
+
+            FormClosing += (sender, e) =>
+            {
+                KillADBServer();
+            };
+            
             button1.Click += (sender, e) => {
                  OpenFileDialog ofd = new OpenFileDialog();
                  ofd.Filter = "APK files (*.apk)|*.apk";
@@ -56,6 +62,24 @@ namespace OAI
             thread.Start();
         }
 
+        private static void KillADBServer()
+        {
+            string adbCommand = $"adb kill-server";
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = $"/c {adbCommand}",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            using (Process process = new Process())
+            {
+                process.StartInfo = startInfo;
+                process.Start();
+            }
+        }
         private static void InstallApp(Button button, string path)
         {
             string adbCommand = $"adb install --bypass-low-target-sdk-block {path}";
