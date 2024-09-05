@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>Assets\ic_launcher.ico</ApplicationIcon>
+    </PropertyGroup>
+    
+
+    <ItemGroup>
+      <None Remove="Assets\Fonts\Roboto-Bold.ttf" />
+      <Resource Include="Assets\Fonts\Roboto-Bold.ttf" />
+      <None Remove="Assets\Fonts\Roboto-Medium.ttf" />
+      <Resource Include="Assets\Fonts\Roboto-Medium.ttf" />
+      <None Remove="Assets\Fonts\Roboto-Regular.ttf" />
+      <Resource Include="Assets\Fonts\Roboto-Regular.ttf" />
+      <None Remove="Assets\close.png" />
+      <Resource Include="Assets\close.png" />
+      <None Remove="Assets\download.png" />
+      <Resource Include="Assets\download.png" />
+      <None Remove="Assets\download_done.png" />
+      <Resource Include="Assets\download_done.png" />
+      <None Remove="Assets\downloading.png" />
+      <Resource Include="Assets\downloading.png" />
+      <None Remove="Assets\file_present.png" />
+      <None Remove="Assets\minimize.png" />
+      <Resource Include="Assets\minimize.png" />
+      <None Remove="Assets\upload_file.png" />
+      <Resource Include="Assets\upload_file.png" />
+    </ItemGroup>
+
+</Project>

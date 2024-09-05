@@ -1,0 +1,161 @@
+﻿<Window x:Class="OAI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OAI"
+        mc:Ignorable="d"
+        Title="OAI" 
+        Width="350" 
+        Height="365"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+    
+    <Window.Resources>
+        <FontFamily x:Key="robotoRegularFont">pack://application:,,,/Assets/Fonts/Roboto-Regular.ttf#Roboto Regular</FontFamily>
+        <FontFamily x:Key="robotoMediumFont">pack://application:,,,/Assets/Fonts/Roboto-Medium.ttf#Roboto Medium</FontFamily>
+        <FontFamily x:Key="robotoBoldFont">pack://application:,,,/Assets/Fonts/Roboto-Bold.ttf#Roboto Bold</FontFamily>
+        
+        <!-- Button Style -->
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="#49453c"/>
+            <Setter Property="Background" Value="#b8f397"/>
+            <Setter Property="BorderBrush" Value="#c3c8bb"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="13"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource robotoMediumFont}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                            From="#b8f397"
+                                                            To="#9dd67d"
+                                                            Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                            From="#9dd67d"
+                                                            To="#b8f397"
+                                                            Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Rectangle Fill="#fef9eb" RadiusX="20" RadiusY="20"></Rectangle>
+        
+        <Label
+            Foreground="#6e6b60"
+            FontSize="12"
+            FontFamily="{StaticResource robotoMediumFont}"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="12,16,0,0">ADB Status:</Label>
+        <Label
+            x:Name="ConnectionLabel"
+            Foreground="#ba1a1a"
+            FontSize="12"
+            FontFamily="{StaticResource robotoMediumFont}"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="80,16,0,0">Disconnected</Label>
+        
+        <Button x:Name="InstallButton"
+                Width="330" 
+                Height="35"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="0,0,0,12"
+                Style="{StaticResource BaseButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Assets/download.png" Width="20"
+                           Margin="0,0,2,0"/>
+                    <TextBlock
+                        FontSize="13"
+                        FontFamily="{StaticResource robotoBoldFont}"
+                        VerticalAlignment="Center">Install</TextBlock>
+                </StackPanel>    
+        </Button>
+        <Button x:Name="CloseButton"
+                Width="30" 
+                Height="30"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="0,12,12,0"
+                Style="{StaticResource BaseButtonStyle}">
+            <Image Source="Assets/close.png"
+                   Stretch="Uniform" 
+                   Width="22"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"></Image>
+        </Button>
+        <Button x:Name="MinimizeButton"
+                Width="30" 
+                Height="30"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="0,12,52,0"
+                Style="{StaticResource BaseButtonStyle}">
+            <Image Source="Assets/minimize.png"
+                   Stretch="Uniform" 
+                   Width="22"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"></Image>
+        </Button>
+        
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
+            <Rectangle 
+                       x:Name="DragablePanel"
+                       Fill="#f2eee0"
+                       Width="330"
+                       Height="250"
+                       RadiusX="20"
+                       RadiusY="20"
+                       AllowDrop="True"/>
+            
+            <StackPanel Orientation="Vertical" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Image Source="Assets/upload_file.png" Width="20"
+                       Margin="0,0,2,0"/>
+                <TextBlock
+                    x:Name="DragableText"
+                    Foreground="#6e6b60"
+                    FontSize="13"
+                    TextWrapping="Wrap"
+                    MaxWidth="150"
+                    FontFamily="{StaticResource robotoMediumFont}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">Drag and drop .apk file</TextBlock>
+            </StackPanel>    
+        </Grid>
+        
+        <Frame x:Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" NavigationUIVisibility="Hidden" Panel.ZIndex="1"/>
+    </Grid>
+</Window>
