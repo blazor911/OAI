@@ -4,7 +4,7 @@
 # Old APK Installer
 
 **The application will help you install APK files that are not supported in modern android versions.** <br><br>
-![image](https://github.com/user-attachments/assets/219c5159-6a08-423a-9fc7-fdcd567dd678)
+![изображение](https://github.com/user-attachments/assets/0536acf9-6b3c-4f7b-85fb-79ab45d1b1fc)
 
 # How to use
 **1.Connect the phone to the computer via USB cable**<br>
